@@ -3,6 +3,7 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Play, Calendar, Clock, X } from "lucide-react";
+const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
 
 type Sermon = {
   _id: string;
@@ -24,7 +25,7 @@ const Sermons = () => {
 
   const fetchSermons = () => {
     axios
-      .get("http://localhost:5000/api/sermons")
+      .get(`${API_BASE_URL}/api/sermons`)
       .then((res) => setSermons(res.data || []))
       .catch((err) => console.error("Error fetching sermons:", err))
       .finally(() => setLoading(false));

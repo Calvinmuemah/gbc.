@@ -1,7 +1,6 @@
-# Use official Node image for building the app
 FROM node:18-alpine AS build
 
-# Set working directory
+# working directory
 WORKDIR /usr/src/app
 
 # Copy package files and install dependencies

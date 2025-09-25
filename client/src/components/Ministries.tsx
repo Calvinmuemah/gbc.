@@ -3,6 +3,9 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+
+
 
 type Ministry = {
   _id: string;
@@ -26,7 +29,7 @@ const Ministries = () => {
 
   const fetchMinistries = () => {
     axios
-      .get("http://localhost:5000/api/ministries")
+      .get(`${API_BASE_URL}/api/ministries`)
       .then((res) => setMinistries(res.data || []))
       .catch((err) => console.error("Error fetching ministries:", err))
       .finally(() => setLoading(false));

@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Church, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 
+
 const NotFound = () => {
   const location = useLocation();
 

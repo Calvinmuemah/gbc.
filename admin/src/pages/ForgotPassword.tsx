@@ -5,6 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Church, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+// const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT; 
+//        const res = await fetch(`${API_BASE_URL}/api/getCats`);
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");

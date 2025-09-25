@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, MapPin, Users } from "lucide-react";
+const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT; 
 
 type Event = {
   _id: string;
@@ -23,7 +24,7 @@ const Events = () => {
 
   const fetchEvents = () => {
     axios
-      .get("http://localhost:5000/api/events")
+      .get(`${API_BASE_URL}/api/events`)
       .then((res) => {
         setEvents(res.data || []);
       })

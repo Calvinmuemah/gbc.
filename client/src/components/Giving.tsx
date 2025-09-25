@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { CreditCard, Heart, Smartphone, DollarSign, Loader2 } from "lucide-react";
+const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+
 
 const Giving = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -29,7 +31,7 @@ const Giving = () => {
     setLoading(true);
     setMessage("");
     try {
-      await axios.post("http://localhost:5000/api/donations/initiate", {
+      await axios.post(`${API_BASE_URL}/api/donations/initiate`, {
         ...form,
         method: "M-Pesa",
         status: "pending",

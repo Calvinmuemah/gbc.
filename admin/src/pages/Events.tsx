@@ -37,12 +37,13 @@ const Events = () => {
   const [error, setError] = useState("");
   const [editingEventId, setEditingEventId] = useState<string | null>(null);
   const [formData, setFormData] = useState<Partial<Event>>({});
-
+  const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT; 
+  
   // ✅ Fetch Events
   const fetchEvents = async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:5000/api/events");
+      const res = await fetch(`${API_BASE_URL}/api/events`);
       if (!res.ok) throw new Error("Failed to fetch events");
       const data: Event[] = await res.json();
       setEvents(data);
@@ -63,7 +64,7 @@ const Events = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:5000/api/events/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/events/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -87,7 +88,7 @@ const Events = () => {
   const handleUpdate = async (id: string) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:5000/api/events/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/events/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

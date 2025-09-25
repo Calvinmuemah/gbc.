@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube, Twitter } from "lucide-react";
+const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT; 
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const Footer = () => {
     setMessage("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/subscribe", {
+      const res = await fetch(`${API_BASE_URL}/api/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

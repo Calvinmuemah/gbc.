@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Plus, Clock, Users, MapPin } from "lucide-react";
+const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
 
 const Dashboard = () => {
   const [recentActivity, setRecentActivity] = useState<any[]>([]);
@@ -13,13 +14,13 @@ const Dashboard = () => {
   useEffect(() => {
     // Fetch Recent Activity (logs)
     axios
-      .get("http://localhost:5000/api/logs")
+      .get(`${API_BASE_URL}/api/logs`)
       .then((res) => setRecentActivity(res.data))
       .catch((err) => console.error("Error fetching logs:", err));
 
     // Fetch Upcoming Events
     axios
-      .get("http://localhost:5000/api/events")
+      .get(`${API_BASE_URL}/api/events`)
       .then((res) => {
         // Only include upcoming
         const upcoming = res.data.filter(

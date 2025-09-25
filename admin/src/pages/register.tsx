@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Church, Loader2, CheckCircle2, XCircle } from "lucide-react";
+const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
 
 // Password validation checks
 const validatePassword = (password: string) => {
@@ -47,7 +48,7 @@ export default function Register() {
     setIsLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/register", {
+      const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),

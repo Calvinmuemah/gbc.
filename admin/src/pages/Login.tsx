@@ -7,6 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Checkbox } from "@/components/ui/checkbox";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Church, Eye, EyeOff, Loader2 } from "lucide-react";
+const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -23,7 +25,7 @@ export default function Login() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

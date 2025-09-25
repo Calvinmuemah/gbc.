@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Search, Filter, Edit, Trash2, Play, X } from "lucide-react";
+const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+
 import { Link } from "react-router-dom";
 
 const Sermons = () => {
@@ -22,7 +24,7 @@ const Sermons = () => {
 
   const fetchSermons = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/sermons");
+      const res = await axios.get(`${API_BASE_URL}/api/sermons`);
       setSermons(res.data);
     } catch (error) {
       console.error("Error fetching sermons", error);
@@ -34,7 +36,7 @@ const Sermons = () => {
     if (!window.confirm("Are you sure you want to delete this sermon?")) return;
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:5000/api/sermons/${id}`);
+      await axios.delete(`${API_BASE_URL}/api/sermons/${id}`);
       setSermons(sermons.filter((s) => s._id !== id));
     } catch (error) {
       console.error("Error deleting sermon", error);
@@ -48,7 +50,7 @@ const Sermons = () => {
     try {
       setLoading(true);
       const res = await axios.put(
-        `http://localhost:5000/api/sermons/${editingSermon._id}`,
+        `${API_BASE_URL}/api/sermons/${editingSermon._id}`,
         editingSermon
       );
       setSermons(

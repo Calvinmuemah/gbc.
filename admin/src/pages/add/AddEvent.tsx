@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
 
 // Simple loading modal
 function LoadingModal({ message }: { message: string }) {
@@ -49,7 +50,7 @@ export default function AddEvent() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:5000/api/events/create", {
+      const res = await fetch(`${API_BASE_URL}/api/events/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

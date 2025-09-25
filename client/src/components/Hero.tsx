@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Play, Users } from "lucide-react";
 import heroImage from "@/assets/church-hero.jpg";
 
+
 const Hero = () => {
   const scrollToSermons = () => {
     const section = document.getElementById("sermons");

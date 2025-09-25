@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
 
 export default function AddMinistry() {
   const [formData, setFormData] = useState({
@@ -56,7 +57,7 @@ export default function AddMinistry() {
         throw new Error("No token found. Please log in again.");
       }
 
-      const res = await fetch("http://localhost:5000/api/ministries/create", {
+      const res = await fetch(`${API_BASE_URL}/api/ministries/create`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`, // ✅ attach token

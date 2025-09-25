@@ -7,6 +7,8 @@ import { Plus, Users, Phone, Mail, Edit, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+
 import {
   Dialog,
   DialogContent,
@@ -42,7 +44,7 @@ const Ministries = () => {
   const fetchMinistries = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/ministries");
+      const res = await fetch(`${API_BASE_URL}/api/ministries`);
       const data = await res.json();
       setMinistries(data);
     } catch (err) {
@@ -60,7 +62,7 @@ const Ministries = () => {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this ministry?")) return;
     try {
-      await fetch(`http://localhost:5000/api/ministries/${id}`, {
+      await fetch(`${API_BASE_URL}/api/ministries/${id}`, {
         method: "DELETE",
       });
       setMinistries((prev) => prev.filter((m) => m._id !== id));
@@ -90,7 +92,7 @@ const Ministries = () => {
       if (avatar) data.append("avatar", avatar);
 
       const res = await fetch(
-        `http://localhost:5000/api/ministries/${editing._id}`,
+        `${API_BASE_URL}/api/ministries/${editing._id}`,
         {
           method: "PUT",
           body: data,

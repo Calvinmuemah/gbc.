@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
 
 const AddSermon = () => {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const AddSermon = () => {
           : [],
       };
 
-      await axios.post("http://localhost:5000/api/sermons/create", payload);
+      await axios.post(`${API_BASE_URL}/api/sermons/create`, payload);
 
       setMessage("✅ Sermon added successfully!");
       setFormData({
@@ -62,7 +63,7 @@ const AddSermon = () => {
       setTimeout(() => navigate("/sermons"), 1200);
     } catch (error) {
       console.error(error);
-      setMessage("❌ Error adding sermon");
+      setMessage("Error adding sermon");
     } finally {
       setLoading(false);
     }
