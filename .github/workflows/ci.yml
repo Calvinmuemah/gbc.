@@ -1,3 +1,99 @@
+# name: Docker
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#     tags: [ "v*.*.*" ]
+#   pull_request:
+#     branches: [ "main" ]
+#   schedule:
+#     - cron: '22 16 * * *'
+
+# env:
+#   REGISTRY: docker.io
+#   BACKEND_IMAGE: ${{ secrets.DOCKER_USERNAME }}/gbc-backend
+#   CLIENT_IMAGE: ${{ secrets.DOCKER_USERNAME }}/gbc-client
+#   ADMIN_IMAGE: ${{ secrets.DOCKER_USERNAME }}/gbc-admin
+
+# jobs:
+#   build-and-push:
+#     runs-on: ubuntu-latest
+#     environment: gbc
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Set up Docker Buildx
+#         uses: docker/setup-buildx-action@v3
+
+#       - name: Log into Docker Hub
+#         uses: docker/login-action@v3
+#         with:
+#           username: ${{ secrets.DOCKER_USERNAME }}
+#           password: ${{ secrets.DOCKER_PASSWORD }}
+
+#       # ------------------ Backend ------------------
+#       - name: Extract backend metadata
+#         id: backend_meta
+#         uses: docker/metadata-action@v5
+#         with:
+#           images: ${{ env.BACKEND_IMAGE }}
+
+#       - name: Build and push backend image
+#         uses: docker/build-push-action@v5
+#         with:
+#           context: ./backend
+#           file: ./backend/Dockerfile
+#           push: ${{ github.event_name != 'pull_request' }}
+#           tags: |
+#             ${{ steps.backend_meta.outputs.tags }}
+#             ${{ env.BACKEND_IMAGE }}:latest
+#           labels: ${{ steps.backend_meta.outputs.labels }}
+#           cache-from: type=gha
+#           cache-to: type=gha,mode=max
+
+#       # ------------------ Client ------------------
+#       - name: Extract client metadata
+#         id: client_meta
+#         uses: docker/metadata-action@v5
+#         with:
+#           images: ${{ env.CLIENT_IMAGE }}
+
+#       - name: Build and push client image
+#         uses: docker/build-push-action@v5
+#         with:
+#           context: ./client
+#           file: ./client/Dockerfile
+#           push: ${{ github.event_name != 'pull_request' }}
+#           tags: |
+#             ${{ steps.client_meta.outputs.tags }}
+#             ${{ env.CLIENT_IMAGE }}:latest
+#           labels: ${{ steps.client_meta.outputs.labels }}
+#           cache-from: type=gha
+#           cache-to: type=gha,mode=max
+
+#       # ------------------ Admin ------------------
+#       - name: Extract admin metadata
+#         id: admin_meta
+#         uses: docker/metadata-action@v5
+#         with:
+#           images: ${{ env.ADMIN_IMAGE }}
+
+#       - name: Build and push admin image
+#         uses: docker/build-push-action@v5
+#         with:
+#           context: ./admin
+#           file: ./admin/Dockerfile
+#           push: ${{ github.event_name != 'pull_request' }}
+#           tags: |
+#             ${{ steps.admin_meta.outputs.tags }}
+#             ${{ env.ADMIN_IMAGE }}:latest
+#           labels: ${{ steps.admin_meta.outputs.labels }}
+#           cache-from: type=gha
+#           cache-to: type=gha,mode=max
+
+
 name: Docker
 
 on:
@@ -66,6 +162,8 @@ jobs:
           context: ./client
           file: ./client/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
+          build-args: |
+            VITE_API_ENDPOINT=${{ secrets.VITE_API_ENDPOINT }}
           tags: |
             ${{ steps.client_meta.outputs.tags }}
             ${{ env.CLIENT_IMAGE }}:latest
@@ -86,6 +184,8 @@ jobs:
           context: ./admin
           file: ./admin/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
+          build-args: |
+            VITE_API_ENDPOINT=${{ secrets.VITE_API_ENDPOINT }}
           tags: |
             ${{ steps.admin_meta.outputs.tags }}
             ${{ env.ADMIN_IMAGE }}:latest
