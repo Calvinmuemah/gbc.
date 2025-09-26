@@ -7,7 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Checkbox } from "@/components/ui/checkbox";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Church, Eye, EyeOff, Loader2 } from "lucide-react";
-const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+// const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+import { API_BASE_URL } from "../api";
 
 
 export default function Login() {

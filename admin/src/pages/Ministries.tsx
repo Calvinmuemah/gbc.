@@ -7,7 +7,8 @@ import { Plus, Users, Phone, Mail, Edit, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+// const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+import { API_BASE_URL } from "../api";
 
 import {
   Dialog,

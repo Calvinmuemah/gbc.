@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube, Twitter } from "lucide-react";
-const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT; 
+// const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+import { API_BASE_URL } from "../api";
 
 const Footer = () => {
   const [email, setEmail] = useState("");

@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, MapPin, Users } from "lucide-react";
-const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT; 
+// const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+import { API_BASE_URL } from "../api";
 
 type Event = {
   _id: string;

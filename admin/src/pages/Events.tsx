@@ -16,6 +16,8 @@ import {
   Save,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+// const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+  import { API_BASE_URL } from "../api";
 
 // ✅ Event type
 type Event = {
@@ -37,8 +39,7 @@ const Events = () => {
   const [error, setError] = useState("");
   const [editingEventId, setEditingEventId] = useState<string | null>(null);
   const [formData, setFormData] = useState<Partial<Event>>({});
-  const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT; 
-  
+
   // ✅ Fetch Events
   const fetchEvents = async () => {
     try {

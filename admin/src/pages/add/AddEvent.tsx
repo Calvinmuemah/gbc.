@@ -6,7 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+// const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+import { API_BASE_URL } from "../../api";
 
 // Simple loading modal
 function LoadingModal({ message }: { message: string }) {

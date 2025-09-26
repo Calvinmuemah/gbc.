@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Search, Filter, Edit, Trash2, Play, X } from "lucide-react";
-const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+// const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+import { API_BASE_URL } from "../api";
 
 import { Link } from "react-router-dom";
 

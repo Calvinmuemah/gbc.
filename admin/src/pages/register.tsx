@@ -12,7 +12,8 @@ import {
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Church, Loader2, CheckCircle2, XCircle } from "lucide-react";
-const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+// const API_BASE_URL = import.meta.env.VITE_API_ENDPOINT;
+import { API_BASE_URL } from "../api";
 
 // Password validation checks
 const validatePassword = (password: string) => {
