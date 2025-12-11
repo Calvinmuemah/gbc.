@@ -25,7 +25,7 @@ const Footer = () => {
 
       const data = await res.json();
       if (res.ok) {
-        setMessage("🎉 Thanks for subscribing! Check your email.");
+        setMessage("Thanks for subscribing! Check your email.");
         setEmail("");
       } else {
         setMessage(data.message || "Subscription failed");

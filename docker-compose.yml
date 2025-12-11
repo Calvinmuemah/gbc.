@@ -1,0 +1,48 @@
+services:
+  client:
+    build: ./client
+    container_name: client
+    expose:
+      - "80"
+
+  backend:
+    build: ./backend
+    container_name: backend
+    expose:
+      - "5000"
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - mongo
+
+  admin:
+    build: ./admin
+    container_name: admin
+    ports:
+      - "3000:80"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - admin_dist:/usr/share/nginx/html:ro
+    depends_on:
+      - client
+      - backend
+      - admin
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    expose:
+      - "27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
+  admin_dist:

@@ -31,6 +31,9 @@ app.use("/api/logs", require("./routes/logsRoutes"));
 app.use("/api/subscribe", require("./routes/subscriptionRoutes"));
 // app.use("/api/media", mediaRoutes);
 
+app.get("/", (req, res) => res.json({ message: "Welcome to GBC API" }));
+app.get("/api", (req, res) => res.json({ message: "Welcome to GBC API" }));
+
 // Health check
 app.get("/health", (req, res) => res.json({ ok: true }));
 
